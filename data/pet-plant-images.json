@@ -1,0 +1,126 @@
+{
+  "ppp-logo": {
+    "original": "image_ecad8661.jpg",
+    "sha256": "e55510a759d063fd5ae06edf405e64b04217a9b838a5988540debbb9ce5ccb9c",
+    "width": 1308,
+    "height": 800,
+    "widths": [
+      400,
+      800
+    ],
+    "bytes": {
+      "400": 53904,
+      "800": 197636
+    },
+    "publicationApproved": true,
+    "approval": "Explicit MCC approval in user request, 2026-10-13"
+  },
+  "pet-plant-display": {
+    "original": "28325168_Unknown.jpeg",
+    "sha256": "3048e196fd5f3014924eee3b6da58c7ad516bb335160e802b3eab55acef3d253",
+    "width": 4608,
+    "height": 2592,
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "bytes": {
+      "480": 35912,
+      "800": 78332,
+      "1200": 138278
+    },
+    "publicationApproved": true,
+    "approval": "Explicit MCC approval in user request, 2026-10-13"
+  },
+  "pet-plant-gathering": {
+    "original": "28325280_Unknown11111.jpeg",
+    "sha256": "4077d5f0c175f8133f4e78d0e72a119376efca00fd10010d06957e294790c645",
+    "width": 4608,
+    "height": 2592,
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "bytes": {
+      "480": 31166,
+      "800": 70164,
+      "1200": 128636
+    },
+    "publicationApproved": true,
+    "approval": "Explicit MCC approval in user request, 2026-10-13"
+  },
+  "pet-plant-sharing": {
+    "original": "28325312_Unknownffffff.jpeg",
+    "sha256": "3089d4a6f4d0a20e4cbd0f6146e2a0b8b55b4e2a07342a266f2893e28ca23e49",
+    "width": 4608,
+    "height": 2592,
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "bytes": {
+      "480": 23162,
+      "800": 53732,
+      "1200": 100736
+    },
+    "publicationApproved": true,
+    "approval": "Explicit MCC approval in user request, 2026-10-13"
+  },
+  "pet-plant-connections": {
+    "original": "PXL_20260516_14485749411.jpg",
+    "sha256": "267a0abfaad5f8c1566ac919d7195689fb67851f8d5fabfaf770e1ab662b4a5e",
+    "width": 4080,
+    "height": 3072,
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "bytes": {
+      "480": 47788,
+      "800": 127804,
+      "1200": 294974
+    },
+    "publicationApproved": true,
+    "approval": "Explicit MCC approval in user request, 2026-10-13"
+  },
+  "pet-plant-ra": {
+    "original": "RA.jpeg",
+    "sha256": "827d8bddf97b19774cc546c7db236510b1d57101fb9f1e066f097e9ef31d9193",
+    "width": 1683,
+    "height": 947,
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "bytes": {
+      "480": 29118,
+      "800": 70702,
+      "1200": 132022
+    },
+    "publicationApproved": true,
+    "approval": "User explicitly described RA and RB as new approved Pet Plant photographs in refinement request, 2026-10-13; prior MCC public-web approval context."
+  },
+  "pet-plant-rb": {
+    "original": "RB.jpeg",
+    "sha256": "304d2239194d9c9b5c3b8dc6109fb1cac20d046aca7f5add02c4f10121e7c4cc",
+    "width": 1365,
+    "height": 768,
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "bytes": {
+      "480": 31460,
+      "800": 58858,
+      "1200": 94860
+    },
+    "publicationApproved": true,
+    "approval": "User explicitly described RA and RB as new approved Pet Plant photographs in refinement request, 2026-10-13; prior MCC public-web approval context."
+  }
+}

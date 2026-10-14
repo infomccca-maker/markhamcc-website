@@ -1,0 +1,7 @@
+import {handleContact} from '../lib/contact-service.mjs';
+import http from 'node:http';
+import fs from 'node:fs';
+import path from 'node:path';
+const root=path.resolve('dist');
+const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.png':'image/png','.webp':'image/webp','.txt':'text/plain'};
+http.createServer(async(req,res)=>{if(req.url.split('?')[0]==='/api/contact'){const response=await handleContact(new Request('http://127.0.0.1:4173/api/contact',{method:req.method}),{});res.writeHead(response.status,Object.fromEntries(response.headers));res.end(await response.text());return}let pathname;try{pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname)}catch{res.writeHead(400).end();return}let file=path.resolve(root,'.'+pathname);if(file!==root&&!file.startsWith(root+path.sep)){res.writeHead(403).end();return}if(fs.existsSync(file)&&fs.statSync(file).isDirectory()){if(!pathname.endsWith('/')){res.writeHead(301,{Location:pathname+'/'}).end();return}file=path.join(file,'index.html')}if(!fs.existsSync(file)||!fs.statSync(file).isFile()){res.writeHead(404,{'Content-Type':'text/html; charset=utf-8'});res.end(fs.readFileSync(path.join(root,'404.html')));return}res.writeHead(200,{'Content-Type':types[path.extname(file)]||'application/octet-stream'});res.end(fs.readFileSync(file));}).listen(4173,'127.0.0.1',()=>console.log('Local preview: http://127.0.0.1:4173'));

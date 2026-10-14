@@ -1,0 +1,19 @@
+.programs-page .page-intro{padding-top:30px;padding-bottom:24px;background:linear-gradient(110deg,#fafaf8,#f5eeec);border-bottom:3px solid var(--mint)}
+.programs-page h1{font-size:clamp(32px,3.3vw,48px);margin:12px 0}.programs-page .lead{font-size:18px;max-width:880px;margin:12px 0}
+.program-tagline{font-size:14px;font-weight:bold;margin:12px 0 18px}
+.programs-page nav.program-categories{display:flex;flex-direction:row;justify-content:flex-start;flex-wrap:wrap;gap:8px;margin-top:20px;order:initial}
+.program-categories a{display:inline-flex;align-items:center;min-height:44px;padding:8px 14px;background:white;border:1px solid #cebfc0;border-radius:4px;color:var(--crimson);font-size:13px;text-decoration:none}
+.programs-page .section{padding-top:26px;padding-bottom:26px;scroll-margin-top:16px}.programs-page h2{font-size:clamp(25px,2.5vw,34px);margin-bottom:18px}
+.programs-page .program-grid{gap:18px;margin:0;grid-template-columns:repeat(3,minmax(0,1fr))}
+.programs-page #P3-1 .program-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.programs-page .program-card{display:flex;flex-direction:column;align-items:flex-start;padding:22px;border-top-width:3px}
+.program-icon{width:38px;height:38px;background:#f8edee;color:var(--crimson);border-radius:8px;display:grid;place-items:center;margin-bottom:12px}.program-icon svg{width:24px;height:24px}
+.programs-page .program-card h3{margin:0 0 10px;font-size:21px}.program-description{margin:0 0 14px;font-size:15px}
+.program-card-actions{margin-top:auto;width:100%}.program-detail{display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:bold}
+.programs-page .registration-status{border-top:1px solid #e7dedb;padding-top:12px;margin-top:8px}.programs-page .registration-note{color:#59484c;font-size:12px!important;margin-bottom:0}
+.programs-page .status-message{font-size:13px!important}.programs-page .button{min-height:44px;max-width:100%;white-space:normal}
+.programs-page .program-card:focus-within{border-color:var(--crimson)}.programs-page .program-card:hover{background:#fffdfc}
+.program-categories a:hover,.program-detail:hover{background:#f8edee}.program-categories a:focus-visible,.program-detail:focus-visible{outline:3px solid #126080;outline-offset:3px}
+.program-context{font-size:14px;margin-bottom:0}.celebration-links{display:flex;flex-wrap:wrap;gap:12px}.programs-page #P3-4{padding-top:20px;padding-bottom:26px}.programs-page #P3-4 h2{font-size:24px}
+@media(max-width:900px){.programs-page .program-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.programs-page .page-intro{padding-top:24px}.programs-page .program-grid,.programs-page #P3-1 .program-grid{grid-template-columns:1fr}.programs-page .program-card{padding:20px}.programs-page nav.program-categories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.program-categories a{font-size:12px;padding:8px 10px}.programs-page .section{padding-top:24px;padding-bottom:24px}}

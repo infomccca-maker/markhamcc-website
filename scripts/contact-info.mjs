@@ -1,0 +1,6 @@
+// Official URLs supplied and confirmed by MCC.
+export const socialLinks=()=>`<div class="social-links" aria-label="MCC social media">
+<a href="https://www.facebook.com/MarkhamCC" target="_blank" rel="noopener noreferrer" aria-label="MCC on Facebook (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M14 22v-9h3l.5-4H14V7c0-1.2.4-2 2-2h2V1.5A25 25 0 0 0 15 1c-3 0-5 1.8-5 5v3H7v4h3v9z"/></svg><span>Facebook</span></a>
+<a href="https://www.instagram.com/markhamcc/" target="_blank" rel="noopener noreferrer" aria-label="MCC on Instagram (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+<a href="https://www.youtube.com/@markham_CC" target="_blank" rel="noopener noreferrer" aria-label="MCC on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2" y="5" width="20" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="m10 9 6 3-6 3z" fill="currentColor"/></svg><span>YouTube</span></a>
+</div>`;

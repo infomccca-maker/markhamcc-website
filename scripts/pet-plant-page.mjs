@@ -1,0 +1,20 @@
+import {petLogo,petGallery} from './pet-plant-media.mjs';
+import {registrationMarkup,sessionFacts} from './program-management.mjs';
+export function petPlantPage({record,intro,section,cards,link}){
+ const approved={status:'Approved',decision:'MCC-supplied Pet Plant narrative; founder/current lead Khurshid Chishti. Supplied Pet Plant photos approved for public use by MCC; no unverified figures. See PET_PLANT_REVIEW.md.'};
+ const part=(id,title,body)=>section(id,title,body,approved);
+ return '<div class="pet-plant-page">'+intro('PET PLANT PROGRAM','Growing Plants. Nurturing Connections.','A seniors wellness initiative, originally founded by Khurshid Chishti').replace('class="page-intro"','class="page-intro pet-intro"').replace('<p class="eyebrow">','<div><p class="eyebrow">').replace('</section>','</div>'+petLogo(true)+'</section>')+
+ part(record.detailSection,'Pet Plant Program',`<p>The Pet Plant Program is a community gardening and seniors wellness initiative founded and actively led by Khurshid Chishti.</p><p>Through his continued dedication, the program encourages seniors to stay active, connect with nature, share gardening knowledge and build meaningful friendships.</p><p>Markham Community Connect proudly supports the initiative by providing volunteers, community outreach, coordination and assistance with activities.</p><p>Khurshid Chishti continues to lead the program, with MCC volunteers working alongside him to help it grow.</p>`)+
+ part('PP.1','The Story Behind Pet Plant',`<p>The Pet Plant Program began through Khurshid Chishti's passion for gardening, community wellness and sharing knowledge with others.</p><p>His vision is to encourage seniors to experience the joy of planting, caring for nature and connecting with their community.</p><p>Over time, the initiative has created opportunities for community members to participate, learn and share experiences through gardening.</p>`)+
+ part('PP.2','Meet the Person Behind Pet Plant',`<div class="pet-leader"><p class="pet-leader-name">Khurshid Chishti</p><p class="pet-role">Founder &amp; Current Program Lead — Khurshid Chishti</p><p>Khurshid Chishti originally established the Pet Plant Program and continues to lead its activities today.</p><p>His commitment to gardening, community participation and seniors wellness remains central to the initiative.</p><p>MCC recognizes his leadership and is pleased to support the program through volunteers, outreach and organizational assistance.</p></div>`)+
+ part('PP.3','What Participants Can Experience',cards([
+ ['Gardening & Plant Care','Learning about planting, growing and caring for plants.'],
+ ['Healthy & Active Living','Encouraging enjoyable, hands-on activities and connection with nature.'],
+ ['Friendship & Social Connection','Creating opportunities for seniors to meet, participate and share experiences.'],
+ ['Sharing Knowledge','Encouraging gardening conversations, practical learning and intergenerational knowledge sharing.']]))+
+ part('PP.4','Pet Plant in the Community','<p>Plant-sharing and gardening conversations offer opportunities for community members to connect, exchange knowledge and participate together. The initiative brings people together around the care of plants and a shared interest in nature.</p>')+
+ part('PP.7','Pet Plant in Action',petGallery())+
+ part('PP.5','Growing Together with MCC',`<p>Khurshid Chishti leads the Pet Plant Program. MCC works alongside him, supporting the initiative through:</p><ul><li>Volunteer participation</li><li>Program coordination assistance</li><li>Community outreach</li><li>Event and activity support</li><li>Connections with community members</li></ul>${link('Explore Seniors & Wellness','programs.html#P3-2')}`)+
+ part(record.registrationSection,'Participation & enquiries',`${sessionFacts(record)}${registrationMarkup(record)}`)+
+ part('PP.6','Grow With Us.',`<p class="lead">Interested in gardening, community connection or supporting the Pet Plant Program? Contact MCC to learn more about upcoming opportunities and how you can get involved.</p>${link('Ask About Pet Plant','/contact.html?subject=registration&amp;program=pet-plant')}`)+'</div>';
+}

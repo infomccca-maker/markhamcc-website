@@ -1,0 +1,56 @@
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+.wrangler/
+node_modules/
+
+# Generated output and local review material
+dist/
+review/
+archive/
+.cache/
+.playwright/
+test-results/
+playwright-report/
+coverage/
+tmp/
+temp/
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Private keys / credential stores
+*.pem
+*.key
+*.p12
+*.pfx
+.npmrc
+
+# Original photo masters stay local; web copies live in src/images/
+pet-plant-photos/
+approved-assets/*.jpg
+approved-assets/*.jpeg
+approved-assets/*.png
+approved-assets/*.tif
+
+# Local editorial/review reports; deployment setup is documented separately
+ABOUT_PAGE_REVIEW.md
+CONTACT_FORM_REPORT.md
+FINAL_LAUNCH_PREPARATION.md
+IMPACT_CONTENT_REVIEW.md
+MISSING_ASSETS.md
+PET_PLANT_IMAGE_REPORT.md
+PET_PLANT_REVIEW.md
+PRELAUNCH_CONTENT_NOTES.md
+PRELAUNCH_UPDATE_REPORT.md
+PROGRAMS_PAGE_REVIEW.md
+RC2027_MISSING_INFORMATION.md
+RC2027_REVIEW_CHECKLIST.md
+REGISTRATION_AND_PROGRAM_AUDIT.md
+WEBSITE_REVIEW_CHECKLIST.md

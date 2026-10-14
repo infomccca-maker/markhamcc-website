@@ -1,0 +1,9 @@
+.about-page .page-intro{padding-top:44px;padding-bottom:30px}
+.about-page .section{padding-top:36px;padding-bottom:36px}
+.about-page #P2-1 h2{max-width:900px;font-size:clamp(25px,2.5vw,34px)}
+.about-story{max-width:850px}.about-story p{margin:0 0 20px}
+.about-page .about-belief{border-left:4px solid var(--mint);padding:12px 20px;margin:24px 0 0}
+.about-page #P2-2 .cards,.about-page #P2-3 .cards,.about-page #P2-4 .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+.about-page .cards{margin-bottom:0}.about-page .card{display:flex;flex-direction:column;align-items:flex-start}
+.about-page .card p{flex:1}.about-page .card h3{margin-top:0}.about-page .button{min-height:44px;max-width:100%;white-space:normal}
+@media(max-width:700px){.about-page .page-intro{padding-top:30px}.about-page .section{padding-top:28px;padding-bottom:28px}.about-page #P2-2 .cards,.about-page #P2-3 .cards,.about-page #P2-4 .cards{grid-template-columns:1fr}.about-page .actions{gap:12px}}

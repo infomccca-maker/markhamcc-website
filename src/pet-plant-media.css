@@ -1,0 +1,13 @@
+.pet-plant-page .pet-intro{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:28px;align-items:center}
+.ppp-logo{display:block;width:260px;max-width:100%;height:auto;object-fit:contain}
+.ppp-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:24px;align-items:start}
+.ppp-gallery figure,.home-pet-feature figure{margin:0;min-width:0}
+.ppp-photo{display:block;width:100%;height:auto;object-fit:contain;border-radius:5px}
+.ppp-gallery figcaption{padding:12px 0;font-weight:bold;color:var(--crimson);font-size:15px}
+.home-pet-feature{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);align-items:center;gap:24px;padding-top:26px;padding-bottom:26px;border-bottom:3px solid var(--mint)}
+.home-pet-copy{display:grid;grid-template-columns:108px minmax(0,1fr);column-gap:16px;align-items:center}
+.home-pet-copy .eyebrow,.home-pet-copy>p:not(.lead),.home-pet-copy>.button{grid-column:1/-1}
+.home-pet-copy .eyebrow{margin:0 0 12px}.home-pet-feature .ppp-logo{width:108px;margin:0;grid-row:2/4}
+.home-pet-feature h2{grid-column:2;margin:0 0 6px;font-size:clamp(26px,2.5vw,34px)}.home-pet-feature .lead{grid-column:2;margin:0;font-size:18px;line-height:1.4}.home-pet-copy>p:not(.lead):not(.eyebrow){margin:14px 0}.home-pet-feature .button{justify-self:start;max-width:100%;min-height:44px;white-space:normal}
+.ppp-gallery figure:last-child:nth-child(odd){grid-column:1/-1;width:100%;max-width:640px;justify-self:center}
+@media(max-width:700px){.pet-plant-page .pet-intro,.home-pet-feature,.ppp-gallery{grid-template-columns:1fr;gap:20px}.pet-intro .ppp-logo{width:200px}.home-pet-feature{padding-top:22px;padding-bottom:22px}.home-pet-copy{grid-template-columns:80px minmax(0,1fr);column-gap:12px}.home-pet-feature .ppp-logo{width:80px}.home-pet-feature .lead{font-size:16px}.ppp-gallery{gap:18px}}

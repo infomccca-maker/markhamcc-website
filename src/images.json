@@ -1,0 +1,161 @@
+{
+  "aaniin-group-session": {
+    "width": 1262,
+    "height": 947,
+    "widths": [
+      480,
+      800,
+      1200,
+      1262
+    ]
+  },
+  "aaniin-workshop-session": {
+    "width": 1262,
+    "height": 947,
+    "widths": [
+      480,
+      800,
+      1200,
+      1262
+    ]
+  },
+  "about-earliest-community": {
+    "width": 1262,
+    "height": 947,
+    "widths": [
+      480,
+      800,
+      1200,
+      1262
+    ]
+  },
+  "events-canada-day": {
+    "width": 1262,
+    "height": 947,
+    "widths": [
+      480,
+      800,
+      1200,
+      1262
+    ]
+  },
+  "events-community-group": {
+    "width": 1257,
+    "height": 947,
+    "widths": [
+      480,
+      800,
+      1200,
+      1257
+    ]
+  },
+  "events-family-picnic": {
+    "width": 1262,
+    "height": 947,
+    "widths": [
+      480,
+      800,
+      1200,
+      1262
+    ]
+  },
+  "hero-rc2025-civic-centre": {
+    "width": 1419,
+    "height": 947,
+    "widths": [
+      480,
+      800,
+      1200,
+      1419
+    ]
+  },
+  "mcc-official-logo": {
+    "width": 1530,
+    "height": 959,
+    "original": "mcc-official-logo.png"
+  },
+  "ramadan-rc2025-civic-wide": {
+    "width": 1421,
+    "height": 947,
+    "widths": [
+      480,
+      800,
+      1200,
+      1421
+    ]
+  },
+  "ramadan-rc2026-awards": {
+    "width": 1262,
+    "height": 947,
+    "widths": [
+      480,
+      800,
+      1200,
+      1262
+    ]
+  },
+  "ramadan-rc2026-bazaar": {
+    "width": 1262,
+    "height": 947,
+    "widths": [
+      480,
+      800,
+      1200,
+      1262
+    ]
+  },
+  "seniors-gardening-smile": {
+    "width": 710,
+    "height": 947,
+    "widths": [
+      480,
+      710
+    ]
+  },
+  "seniors-group-gardening": {
+    "width": 1536,
+    "height": 2048,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ]
+  },
+  "seniors-planting": {
+    "width": 1531,
+    "height": 2048,
+    "widths": [
+      480,
+      800,
+      1200,
+      1531
+    ]
+  },
+  "skills-arts-and-crafts": {
+    "width": 710,
+    "height": 947,
+    "widths": [
+      480,
+      710
+    ]
+  },
+  "skills-stem-building": {
+    "width": 710,
+    "height": 947,
+    "widths": [
+      480,
+      710
+    ]
+  },
+  "youth-soccer-celebration": {
+    "width": 1266,
+    "height": 947,
+    "widths": [
+      480,
+      800,
+      1200,
+      1266
+    ]
+  }
+}
