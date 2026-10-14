@@ -24,7 +24,7 @@ const {chromium}=require('playwright');const fs=require('node:fs');const assert=
    await page.locator('#contact-name').focus();await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement.id),'contact-email');
    if(width===1440||width===390)await page.screenshot({path:`review/contact-form-${width}.png`,fullPage:true});
   }
-  assert.deepEqual(await page.locator('#contact-subject option').allTextContents(),['Select a subject','Program Registration','Volunteering','Sponsorship & Donations','Events & Activities','Seniors Programs','General Inquiry']);
+  assert.deepEqual(await page.locator('#contact-subject option').allTextContents(),['Select a subject','Program Registration','Volunteering','Partnerships','Sponsorship & Donations','Events & Activities','Seniors Programs','General Inquiry']);
   for(const id of ['contact-name','contact-email','contact-subject','contact-message'])assert.equal(await page.locator('#'+id).getAttribute('required'),'');
   const before=posts;await page.getByRole('button',{name:'Send Message'}).click();assert.equal(posts,before);assert.equal(await page.locator('#contact-name').evaluate(e=>e.validity.valueMissing),true);
   await page.locator('#contact-name').fill('Local Browser Test');await page.locator('#contact-email').fill('invalid');await page.getByRole('button',{name:'Send Message'}).click();assert.equal(posts,before);assert.equal(await page.locator('#contact-email').evaluate(e=>e.validity.typeMismatch),true);

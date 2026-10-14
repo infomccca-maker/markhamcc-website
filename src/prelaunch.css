@@ -1,0 +1,30 @@
+/* Shared internal-page rhythm; homepage identity and specialized layouts are retained. */
+body:not(.home-page) .page-intro{padding:38px 5% 28px}
+body:not(.home-page) .page-intro h1{font-size:clamp(30px,3.5vw,46px);max-width:850px;line-height:1.15;margin:12px 0 18px}
+body:not(.home-page) .page-intro .lead{font-size:18px;max-width:760px}
+body:not(.home-page) .section{padding-top:34px;padding-bottom:34px}
+body:not(.home-page) main h2{font-size:clamp(24px,2.6vw,32px);margin:0 0 18px}
+body:not(.home-page) main h3{font-size:20px}
+body:not(.home-page) .cards{gap:18px;margin:22px 0}
+body:not(.home-page) .card{padding:22px;border-radius:10px}
+body:not(.home-page) .card h3{margin-top:0}
+body:not(.home-page) .actions{margin-top:20px}
+.editorial-split,.story-layout{display:grid;grid-template-columns:1.15fr 1fr;align-items:start;gap:32px}
+.editorial-split .photo-group,.story-layout .photo-group{margin:0}
+.editorial-split img,.story-layout img{max-height:440px;object-fit:contain}
+.story-layout .about-story{max-width:none}
+.session-panel{border-left:4px solid var(--blue);background:#fff;padding:22px;border-radius:0 10px 10px 0;max-width:850px}
+.session-panel .eyebrow{margin-top:0}.schedule-list{padding:0;list-style:none;margin-bottom:0}.schedule-list li{display:flex;justify-content:space-between;gap:16px;border-top:1px solid #e7dedb;padding:10px 0}
+.contact-layout{max-width:1250px;padding:0 5% 34px;margin:auto;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr);gap:28px}
+.contact-layout .section{padding:24px!important;background:#fff;border:1px solid #e4dcd7;border-radius:10px;margin:0 0 18px}
+.contact-layout>section{min-width:0}.contact-layout aside{min-width:0}.contact-layout .social-links{flex-direction:column;align-items:flex-start}.contact-layout .contact-form p{font-size:14px}.contact-layout .contact-fields{gap:0 16px}
+.opportunity-grid{max-width:1125px;margin:0 auto 36px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.opportunity-grid .section{width:100%;background:white;border:1px solid #e4dcd7;border-top:4px solid var(--blue);padding:26px!important;border-radius:10px}
+.opportunity-grid .section:nth-child(2){border-top-color:var(--orange)}.opportunity-grid .section:nth-child(3){border-top-color:var(--crimson)}.opportunity-grid .section:nth-child(4){border-top-color:var(--mint)}
+.journey{padding:0;list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.journey li{border-top:4px solid var(--mint);padding:20px;background:#fff;border-radius:6px}.journey strong{color:var(--crimson);font-size:20px}
+.feature-callout{padding:24px;background:#1A0A0A;border-radius:10px;color:#fff}.feature-callout h3{color:var(--mint)}.feature-callout .button{background:var(--mint);color:var(--ink)}
+.partner-notes{padding:22px;border-left:4px solid var(--mint);background:white}.partner-notes p{max-width:850px}
+.internal-page .section>.photo-group img{max-height:440px;object-fit:contain}
+.refined-page .button{max-width:100%;text-align:center}.refined-page .card{display:flex;flex-direction:column;align-items:flex-start}.refined-page .card>.button{margin-top:auto}
+@media(max-width:1100px){.opportunity-grid{margin-left:5%;margin-right:5%}.contact-layout{grid-template-columns:minmax(0,.85fr) minmax(0,1.2fr)}.contact-layout .contact-fields{grid-template-columns:1fr}.story-layout{grid-template-columns:1fr}.story-layout .photo-group{max-width:700px}}
+@media(max-width:700px){body:not(.home-page) .page-intro{padding:28px 6% 22px}body:not(.home-page) .page-intro .lead{font-size:17px}body:not(.home-page) .section{padding-top:26px;padding-bottom:26px}.editorial-split,.contact-layout,.opportunity-grid,.journey{grid-template-columns:1fr}.editorial-split{gap:20px}.contact-layout{padding:0 6% 24px;gap:4px}.contact-layout .section{padding:18px!important}.opportunity-grid{margin:0 6% 28px;gap:16px}.schedule-list li{flex-direction:column;gap:2px}.session-panel{padding:18px}.refined-page .cards{grid-template-columns:1fr}.feature-callout{padding:20px}.session-facts>div{flex-direction:column;gap:0}}

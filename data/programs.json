@@ -10,14 +10,30 @@
       "status": null,
       "startDate": null,
       "endDate": null,
-      "ageEligibility": null,
+      "ageEligibility": "Ages 5–13",
       "registrationFee": null,
       "registrationUrl": "",
       "registrationProvider": null,
       "approvedPhotograph": null,
       "detailPageUrl": "soccer.html",
       "detailSection": "P3.5",
-      "registrationSection": "P3.15"
+      "registrationSection": "P3.15",
+      "schedule": "Saturdays",
+      "venue": "ISM Gym, 2900 Denison Street, Markham",
+      "ageGroups": [
+        {
+          "age": "Ages 5–7",
+          "time": "10:00–11:00 AM"
+        },
+        {
+          "age": "Ages 8–10",
+          "time": "11:00 AM–12:00 PM"
+        },
+        {
+          "age": "Ages 11–13",
+          "time": "12:00–1:00 PM"
+        }
+      ]
     },
     {
       "id": "volleyball",
@@ -134,16 +150,19 @@
       "category": "Skills & Discovery",
       "description": "Creative exploration and STEM activities.",
       "status": null,
-      "startDate": null,
-      "endDate": null,
-      "ageEligibility": null,
+      "startDate": "2026-10-17",
+      "endDate": "2026-12-05",
+      "ageEligibility": "Ages 12 and under",
       "registrationFee": null,
       "registrationUrl": "",
       "registrationProvider": null,
       "approvedPhotograph": null,
       "detailPageUrl": "nextgen.html",
       "detailSection": "P3.12",
-      "registrationSection": "P3.22"
+      "registrationSection": "P3.22",
+      "seasonLabel": "Fall 2026",
+      "schedule": "Saturdays, 11:00 AM–1:00 PM",
+      "venue": "ISM Gym, 2900 Denison Street, Markham"
     },
     {
       "id": "entrepreneur-expo",
@@ -298,7 +317,10 @@
       "registrationProvider": null,
       "approvedPhotograph": null,
       "detailPageUrl": "aaniin.html",
-      "detailSection": "P6.2"
+      "detailSection": "P6.2",
+      "schedule": "Mondays, 11:00 AM–1:00 PM",
+      "venue": "Youth Room, Aaniin Community Centre",
+      "seasonLabel": "Current partnership through December 14, 2026"
     },
     {
       "id": "family-picnic",

@@ -9,6 +9,11 @@ if(form){
   fields.subject.value='Program Registration';fields.programId.value=program;
   fields.message.value=`Hello MCC, I would like to register for ${fields.programId.selectedOptions[0].textContent}. Please share registration details.`;
  }
+ const enquirySubjects={volunteering:'Volunteering',partnership:'Partnerships',sponsorship:'Sponsorship & Donations',events:'Events & Activities'};
+ if(enquirySubjects[params.get('subject')]){
+  fields.subject.value=enquirySubjects[params.get('subject')];
+  if(params.get('subject')==='partnership')fields.message.value='Hello MCC, I would like to discuss a community partnership.';
+ }
  syncProgram();
  const show=(message,error=false)=>{result.textContent=message;result.classList.toggle('form-error',error);result.focus()};
  const unavailable=()=>{ready=false;button.disabled=true;service.textContent='Online messaging is not available yet. Please call 437-907-1700 or email info@markhamcc.ca. No message has been sent.'};

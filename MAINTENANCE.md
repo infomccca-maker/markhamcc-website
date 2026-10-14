@@ -105,3 +105,19 @@ Cloudflare build: node scripts/build.mjs; output: dist; framework: None; root: r
 ## Website contact form
 
 The Contact page now has an on-site message form. See CONTACT_FORM_SETUP.md for the proposed Pages Functions/Turnstile/Resend integration and required approvals. It remains disabled without server configuration; local preview never sends mail. The 24 Contact Us to Register links carry only a public program ID and prefill an editable enquiry. RC2027 remains Coming Soon. No real mailbox delivery has been verified. The static build still needs no package install, but future deployment must also compile the root functions/ directory.
+
+## Verified weekly and seasonal details
+
+Edit `data/programs.json` for Soccer Academy, NextGen and Aaniin. The permanent program pages and Events listings read these same records.
+
+- `schedule`: approved weekday/time wording.
+- `venue`: approved facility and address.
+- `seasonLabel`: the season or partnership period; do not infer enrollment availability.
+- `ageGroups` (Soccer): each approved age band and its time.
+- `startDate`, `endDate`, `ageEligibility`: verified session facts only. NextGen Fall 2026 dates are supplied; Soccer seasonal dates remain unknown.
+
+Keep fees unknown until confirmed. Updating these facts does not open registration. The existing Contact Us to Register workflow remains in place. Aaniin uses Ask About Joining with the same program-prefilled contact flow.
+
+Contact enquiry URLs support `subject=volunteering`, `subject=partnership`, `subject=sponsorship`, and `subject=events`. Partnership enquiries select Partnerships; program enquiries continue using `subject=registration&program=PROGRAM_ID`.
+
+Shared internal-page refinements: `src/prelaunch.css`. Enhanced page content: `scripts/prelaunch-pages.mjs`. The About 2024 photograph is preview-only pending public publication approval. Review `PRE_LAUNCH_REVIEW_TOMORROW.md` before public launch.

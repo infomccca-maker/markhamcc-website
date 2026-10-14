@@ -22,9 +22,9 @@ const fs=require('node:fs');
   results.push(check);
  }
  for(const file of ['aaniin.html','events.html','ramadan.html']){await page.goto('http://127.0.0.1:4173/'+file);const expected=await page.locator('.mcc-photo img').count();if(!expected)throw Error(file+' missing photos');results.push({file,photos:expected});}
- // About intentionally uses approved text until photo publication permission is confirmed.
+ // About preserves the founding story and includes the supplied 2024 review photograph.
  await page.goto('http://127.0.0.1:4173/about.html');
- if(await page.locator('main img').count()!==0||await page.locator('h1').innerText()!=='Our Story. Our Community.'||await page.locator('.about-page .section').count()!==7||!(await page.locator('#P2-1').innerText()).includes('established in 2024'))throw Error('Approved text-based About presentation changed');
- results.push({file:'about.html',photos:0,approvedTextPresentation:true});
+ if(await page.locator('main img').count()!==1||await page.locator('h1').innerText()!=='Our Story. Our Community.'||await page.locator('.about-page .section').count()!==7||!(await page.locator('#P2-1').innerText()).includes('established in 2024'))throw Error('Approved text-based About presentation changed');
+ results.push({file:'about.html',photos:1,approvedStoryPresentation:true});
  fs.writeFileSync('review/layout-check-results.json',JSON.stringify(results,null,2));console.log(JSON.stringify(results));await browser.close();
 })();

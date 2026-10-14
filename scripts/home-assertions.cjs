@@ -3,7 +3,7 @@ const fs=require('node:fs');
 async function assertApprovedHome(page){
  const preserved=await page.evaluate(before=>{
   const old=new DOMParser().parseFromString(before,'text/html');
-  const normalize=main=>{const copy=main.cloneNode(true);copy.querySelectorAll('#P1-4a').forEach(n=>n.remove());copy.querySelectorAll('.registration-status').forEach(n=>n.remove());const volunteer=copy.querySelector('#P1-8 .card');volunteer?.querySelectorAll('.pending,a').forEach(n=>n.remove());return copy.innerHTML};
+  const normalize=main=>{const copy=main.cloneNode(true);copy.querySelectorAll('#P1-4a, #P1-10').forEach(n=>n.remove());copy.querySelectorAll('.registration-status').forEach(n=>n.remove());const volunteer=copy.querySelector('#P1-8 .card');volunteer?.querySelectorAll('.pending,a').forEach(n=>n.remove());return copy.innerHTML};
   return normalize(old.querySelector('main'))===normalize(document.querySelector('main'));
  },fs.readFileSync('scripts/fixtures/homepage-before-prelaunch.html','utf8'));
  assert.equal(preserved,true,'Approved homepage content/order/images/layout changed outside requested registration updates');

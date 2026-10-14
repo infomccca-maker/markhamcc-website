@@ -29,7 +29,7 @@ assert.throws(()=>validateRecords([{...sample,status:'Available'}]));
 assert.throws(()=>validateRecords([{...sample,startDate:'2026-02-30'}]));
 assert.throws(()=>validateRecords([{...sample,startDate:'2026-12-31',endDate:'2026-01-01'}]));
 assert.throws(()=>validateRecords([sample,sample]));
-assert.equal(sessionFacts(sample),'');
+assert.equal(sessionFacts({...sample,startDate:null,endDate:null,ageEligibility:null,registrationFee:null}),'');
 assert.equal(fs.readFileSync('data/programs.json','utf8'),original);
 fs.writeFileSync('review/registration-status-demo.json',JSON.stringify({note:'Hypothetical in-memory Soccer Academy status changes; no data file changes and no registration URL supplied.',transitions:output},null,2));
 console.log('PASS: status matrix, URL/provider validation, donation rejection, date validation, duplicate IDs and empty-field suppression.');
