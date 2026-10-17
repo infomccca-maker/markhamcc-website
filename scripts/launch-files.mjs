@@ -1,8 +1,10 @@
 import fs from 'node:fs';
+// Match Cloudflare Pages' existing HTML-to-extensionless URL behavior.
+export const publicPageUrl = file => 'https://markhamcc.ca/' + file.replaceAll('\\','/').replace(/index\.html$/,'').replace(/\.html$/,'');
 export function writeLaunchFiles(out,mode=process.env.SITE_MODE||'preview'){
  if(!['preview','public'].includes(mode))throw Error('SITE_MODE must be preview or public');
  const files=fs.readdirSync(out,{recursive:true}).filter(f=>f.endsWith('.html'));
- const urls=files.filter(f=>!['404.html','ramadan-2027.html'].includes(f)).map(f=>'https://markhamcc.ca/'+f.replaceAll('\\','/').replace(/index\.html$/,''));
+ const urls=files.filter(f=>!['404.html','ramadan-2027.html'].includes(f)).map(publicPageUrl);
  fs.writeFileSync(out+'/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+urls.map(u=>`  <url><loc>${u}</loc></url>`).join('\n')+'\n</urlset>\n');
  fs.writeFileSync(out+'/_routes.json',JSON.stringify({version:1,include:['/api/contact'],exclude:[]},null,2)+'\n');
  const publicRobots='User-agent: *\nAllow: /\nSitemap: https://markhamcc.ca/sitemap.xml\n';

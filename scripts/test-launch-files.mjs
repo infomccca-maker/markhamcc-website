@@ -8,6 +8,7 @@ for(const name of ['index.html','privacy.html','404.html','ramadan-2027.html','r
 for(const mode of ['preview','public']){
  const result=writeLaunchFiles(tmp,mode);
  assert.equal(result.urls.length,3);assert.ok(result.urls.includes('https://markhamcc.ca/ramadan-connect/2027/'));
+ assert.deepEqual(new Set(result.urls),new Set(['https://markhamcc.ca/','https://markhamcc.ca/privacy','https://markhamcc.ca/ramadan-connect/2027/']));
  const robots=fs.readFileSync(tmp+'/robots.txt','utf8'),headers=fs.readFileSync(tmp+'/_headers','utf8');
  assert.equal(robots.includes('Disallow: /'),mode==='preview');assert.equal(headers.includes('X-Robots-Tag: noindex'),mode==='preview');
  if(mode==='public')assert.match(robots,/Sitemap: https:\/\/markhamcc.ca\/sitemap.xml/);

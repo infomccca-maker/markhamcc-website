@@ -20,7 +20,9 @@ Official MCC logo: images/mcc-official-logo.png (RGB PNG converted from provided
 
 ## IMPORTANT BEFORE PUBLICATION
 
-All images need publication permission verification, especially identifiable children. Assets are approved as design candidates, NOT automatically authorized for public release. Do not publish without confirmation. Responsive crops should not cut off faces. Some images may include historical .org branding; do not silently edit historic signs or banners.
+**Superseding confirmation — October 17, 2026:** MCC confirms it has obtained permission for public website use of every currently selected photograph, including Khurshid Chishti, children, seniors, volunteers and community participants. The photo-permission blocker is resolved for this selected set based on MCC's confirmation. Keep all existing approved photographs. This is not blanket approval of future or unselected assets. Consent records have not been independently inspected by Codex.
+
+The earlier design-candidate-only permission warning is superseded for the currently selected set. Responsive crops should not cut off faces. Some images may include historical .org branding; do not silently edit historic signs or banners.
 
 ## Codex integration
 

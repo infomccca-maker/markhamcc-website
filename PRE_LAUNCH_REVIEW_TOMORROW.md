@@ -1,5 +1,17 @@
 # MCC Website V3 — review tomorrow
 
+## Current status — October 17, 2026
+
+**Comprehensive review update (supersedes earlier timing clearance):** MCC confirms all selected photographs, Soccer/NextGen/Aaniin schedules and enquiry-only registration. MCC explicitly states Service Canada has NOT been notified about this website launch; NHSP communication timing remains NEEDS CONFIRMATION, not conclusively cleared. The new audit and PRODUCTION_LAUNCH_PLAN.md contain the full consolidated decisions. Local privacy/contact wording and canonical/sitemap corrections are complete; no deployment/push included.
+
+NHSP update: MCC's approved, project-specific acknowledgement is implemented locally across Home, About, Our Impact and Seniors in Bloom. MCC confirms no explicit Government of Canada logo or $24,600 publication requirement. Section 19's 60-day initial announcement allowance and 20-calendar-day advance notification requirement for subsequent project communication activities are recorded in the current audit. MCC later clarified that Service Canada has not been notified; wording is resolved but communication timing remains unconfirmed. No deployment.
+
+Protected-preview contact delivery testing is **COMPLETE**. The controlled submission passed Turnstile and Resend delivery verification; MCC confirmed receipt at info@markhamcc.ca, correct Reply-To, and a successful sent-and-received test reply. Preview deployment e628503e (mcc-website-v3, commit 4c0fef1) is successful and Access-protected; CONTACT_ENABLED=true in Preview only. This supersedes the historical disabled/unverified contact and undeployed-preview statements below. It does not establish production readiness or complete every live failure-mode test.
+
+Photo-permission blocker RESOLVED: on October 17, MCC explicitly confirmed public-use permission for all currently selected website photographs, including Khurshid Chishti, children, seniors, volunteers and community participants. Keep all selected photographs. This supersedes permission-pending statements below for this selected set.
+
+See LAUNCH_READINESS_AUDIT_2026-10-17.md for the current audit, remaining blockers, verification limits and recommended next action. Public launch remains on hold for funding acknowledgement review, program sign-off, contact-processing wording and separately approved production configuration. No public launch, domain, DNS or Microsoft 365 changes were made.
+
 Scope: protected preview on `mcc-website-v3`. This is not public launch approval.
 
 ## Completed

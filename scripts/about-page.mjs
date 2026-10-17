@@ -1,5 +1,5 @@
 export function aboutPage({intro,section,cards,link}) {
- const approved={status:'Approved',decision:'User-supplied About narrative; see ABOUT_PAGE_REVIEW.md. Photo omitted pending publication permission.'};
+ const approved={status:'Approved',decision:'User-supplied About narrative; see ABOUT_PAGE_REVIEW.md. Selected photo publication approved by MCC, October 17, 2026.'};
  return '<div class="about-page">'+
  intro('ABOUT MCC','Our Story. Our Community.','A Markham-based nonprofit bringing people together since 2024.')+
  section('P2.1','Built on Experience. Inspired by Community. Focused on the Next Generation.',`<div class="about-story">

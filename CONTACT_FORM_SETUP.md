@@ -1,5 +1,7 @@
 # MCC contact form — configuration and delivery checklist
 
+**October 17, 2026 update:** Protected-preview delivery testing is COMPLETE. Cloudflare Preview is enabled with encrypted secrets, the verified Resend sending domain, and successful Turnstile/send/retrieve checks. MCC confirmed mailbox receipt, Reply-To and a successful test reply. See LAUNCH_READINESS_AUDIT_2026-10-17.md. Production is not configured or approved by this completion; the original preparation checklist below is historical where it says no configuration or real email testing occurred.
+
 Prepared locally on mcc-website-v3. No account, DNS, Microsoft 365, GitHub or Cloudflare configuration has been changed. No real email has been sent or verified.
 
 ## Proposed service and cost

@@ -13,5 +13,5 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   await link.click();await page.locator('#contact-program').waitFor();assert.equal(await page.locator('#contact-program').inputValue(),'pet-plant');assert.equal(await page.locator('#contact-subject').inputValue(),'Program Registration');assert.match(await page.locator('#contact-message').inputValue(),/Pet Plant Program/);assert.equal(await page.locator('#contact-message').isEditable(),true);
   console.log(`PASS Pet Plant ${width}px: content, layout, focus and enquiry prefill.`);
  }
- await page.goto('http://127.0.0.1:4173/programs.html');assert.equal(await page.locator('#P3-2 a[href="pet-plant.html"]').count(),1);assert.ok(fs.readFileSync('dist/sitemap.xml','utf8').includes('https://markhamcc.ca/pet-plant.html'));assert.match(fs.readFileSync('dist/robots.txt','utf8'),/Disallow: \//);assert.deepEqual(errors,[]);
+ await page.goto('http://127.0.0.1:4173/programs.html');assert.equal(await page.locator('#P3-2 a[href="pet-plant.html"]').count(),1);assert.ok(fs.readFileSync('dist/sitemap.xml','utf8').includes('<loc>https://markhamcc.ca/pet-plant</loc>'));assert.match(fs.readFileSync('dist/robots.txt','utf8'),/Disallow: \//);assert.deepEqual(errors,[]);
  }finally{await browser.close()}})().catch(e=>{console.error(e);process.exitCode=1});
