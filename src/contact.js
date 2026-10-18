@@ -28,9 +28,9 @@ if(form){
   try{
    const response=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...values,...attempt,token}),signal:AbortSignal.timeout(40000)});
    const data=await response.json();
-   if(!response.ok||data.ok!==true||data.delivery!=='delivered')throw Error(data.error||'We could not confirm delivery. Please retry. Your message has been kept.');
-   form.reset();syncProgram();attempt=null;lastPayload='';show('Thank you for contacting Markham Community Connect!\nYour message has been received. Our team will respond as soon as possible.');
-  }catch(error){show(error.name==='TimeoutError'?'Delivery has not been confirmed. Please retry shortly. Your message has been kept.':error instanceof TypeError||error instanceof SyntaxError?'We could not confirm a response from the message service. Please retry shortly. Your message has been kept.':error.message||'We could not confirm delivery. Please retry.',true)}
+   if(response.status!==202||data.ok!==true||data.delivery!=='accepted')throw Error(data.error||'We could not confirm your submission. Please retry without changing the message. Your message has been kept.');
+   form.reset();syncProgram();attempt=null;lastPayload='';show('Thank you for contacting Markham Community Connect!\nYour enquiry has been submitted for delivery. If you need urgent help, please call 437-907-1700.');
+  }catch(error){show(error.name==='TimeoutError'?'We could not confirm your submission. Please retry shortly without changing the message. Your message has been kept.':error instanceof TypeError||error instanceof SyntaxError?'We could not confirm a response from the message service. Please retry shortly without changing the message. Your message has been kept.':error.message||'We could not confirm your submission. Please retry without changing the message.',true)}
   finally{busy=false;button.textContent='Send Message';token='';if(widget!==null)window.turnstile.reset(widget);button.disabled=false}
  });
  for(const field of [fields.name,fields.message])field.addEventListener('input',()=>field.setCustomValidity(''));

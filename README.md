@@ -47,7 +47,7 @@ Run node scripts/test-program-management.mjs, node scripts/test-rc2027.mjs and n
 
 ## Website contact form
 
-The Contact page uses Cloudflare Pages Functions, Turnstile and Resend. Protected-preview delivery, mailbox receipt and Reply-To/reply delivery were verified on October 17, 2026. Production settings remain separate and unconfigured; local preview never sends mail. The 24 Contact Us to Register links carry only public program IDs and prefill editable enquiries. RC2027 remains Coming Soon. See CONTACT_FORM_SETUP.md and LAUNCH_READINESS_AUDIT_2026-10-17.md. The static build needs no package install; Pages must compile the root functions/ directory.
+The Contact page uses Cloudflare Pages Functions, Turnstile and Resend. Protected-preview delivery, mailbox receipt and Reply-To/reply delivery were verified on October 17, 2026. On October 18 MCC approved minimum-permission Resend Sending access and a handler update: HTTP 202 confirms provider acceptance only; operators verify delivery separately in Resend and the mailbox. The updated version requires protected-Preview retesting. Production configuration is separate, CONTACT_ENABLED remains false, and local preview never sends mail. The 24 Contact Us to Register links carry only public program IDs and prefill editable enquiries. RC2027 remains Coming Soon. See CONTACT_FORM_SETUP.md and LAUNCH_READINESS_AUDIT_2026-10-17.md. The static build needs no package install; Pages must compile the root functions/ directory.
 
 ## Repository contents
 
