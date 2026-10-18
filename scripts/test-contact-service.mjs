@@ -10,6 +10,10 @@ const run=async(data=valid,scenario={},options={})=>{const stub=makeFetch(scenar
 assert.equal((await handleContact(req(),{})).status,503);
 assert.deepEqual(await (await handleContact(new Request('https://local.test/api/contact'),{})).json(),{enabled:false,siteKey:null});
 const config=await (await handleContact(new Request('https://local.test/api/contact'),env)).json();assert.deepEqual(Object.keys(config).sort(),['enabled','siteKey']);
+const previewHost='mcc-website-v3.markhamcc-website.pages.dev';
+for(const [key,shape,outer] of [['re_unit_test_placeholder_only',true,false],['  re_unit_test_placeholder_only\n',true,true],['not-a-provider-key',false,false],['Bearer re_unit_test_placeholder_only',false,false]]){const response=await handleContact(new Request(`https://${previewHost}/api/contact`),{...env,SITE_MODE:'preview',CONTACT_ALLOWED_HOSTNAMES:previewHost,RESEND_API_KEY:key});const body=await response.json();assert.deepEqual(body.previewChecks,{resendKeyShapeValid:shape,resendKeyHasOuterWhitespace:outer});assert.equal(JSON.stringify(body).includes(key.trim()),false)}
+for(const [mode,host] of [['public',previewHost],['preview','markhamcc-website.pages.dev'],['preview','markhamcc.ca']]){const body=await (await handleContact(new Request(`https://${host}/api/contact`),{...env,SITE_MODE:mode,CONTACT_ALLOWED_HOSTNAMES:host})).json();assert.equal('previewChecks' in body,false)}
+const whitespaceStub=makeFetch();await handleContact(req(),{...env,RESEND_API_KEY:'  unit-test-only\n'},{fetch:whitespaceStub.fn,rateAllowed:async()=>true});assert.equal(whitespaceStub.calls[1].options.headers.Authorization,'Bearer unit-test-only');
 assert.equal((await handleContact(req(valid,{Origin:'https://evil.invalid'}),env)).status,403);
 assert.equal((await handleContact(req(valid,{'Content-Type':'text/plain'}),env)).status,415);
 assert.equal((await handleContact(req('x'.repeat(18001)),env)).status,400);
