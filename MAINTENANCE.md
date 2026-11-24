@@ -121,3 +121,6 @@ Keep fees unknown until confirmed. Updating these facts does not open registrati
 Contact enquiry URLs support `subject=volunteering`, `subject=partnership`, `subject=sponsorship`, and `subject=events`. Partnership enquiries select Partnerships; program enquiries continue using `subject=registration&program=PROGRAM_ID`.
 
 Shared internal-page refinements: `src/prelaunch.css`. Enhanced page content: `scripts/prelaunch-pages.mjs`. The About 2024 photograph is preview-only pending public publication approval. Review `PRE_LAUNCH_REVIEW_TOMORROW.md` before public launch.
+
+## Studio content (content/studio)
+MCC Marketing Studio proposes news, events, galleries, funder acknowledgements, SEO metadata and information pages as JSON files in `content/studio/` through draft pull requests. `scripts/studio-content.mjs` renders them during `node scripts/build.mjs`; invalid content fails the build. Review the Cloudflare Preview, check wording, photo consent and acknowledgements, then merge deliberately — merging is what publishes. See `content/studio/README.md`.

@@ -1,0 +1,18 @@
+{
+  "_source": "MCC Marketing Studio (owner-reviewed PR)",
+  "_kind": "event",
+  "title": "Synthetic workshop",
+  "starts_at": "2027-03-06T15:00:00.000Z",
+  "ends_at": "2027-03-06T17:00:00.000Z",
+  "timezone": "America/Toronto",
+  "venue": "Synthetic Hall",
+  "program": "Seniors in Bloom",
+  "summary": "Synthetic confirmed event.",
+  "registration_url": "https://example.org/register",
+  "acknowledgements": [
+    {
+      "organisation": "Synthetic Funder",
+      "wording": "This synthetic event is supported by Synthetic Funder."
+    }
+  ]
+}

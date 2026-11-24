@@ -6,6 +6,7 @@ import { programsPage } from './programs-page.mjs';
 import { aboutPage } from './about-page.mjs';
 import { impactPage } from './impact-page.mjs';
 import fs from 'node:fs';
+import { loadStudioContent, studioPages, eventsSection, fundersSection, applySeo, copyMedia, fileForPath, STUDIO_CSS } from './studio-content.mjs';
 import path from 'node:path';
 import { contactForm } from './contact-form.mjs';
 import { policies, policyBody } from './policy-content.mjs';
@@ -24,7 +25,13 @@ fs.mkdirSync(out,{recursive:true});
 fs.mkdirSync('review',{recursive:true}); // Local test output; ignored by Git.
 fs.mkdirSync('archive/original',{recursive:true});
 for(const f of ['index.html','contact.html','donate.html','ramadan.html','README.md','mcc-logo.png']) if(!fs.existsSync('archive/original/'+f)) fs.copyFileSync(f,'archive/original/'+f);
-const nav=[['Home','index.html'],['About','about.html'],['Programs','programs.html'],['Events','events.html'],['Ramadan Connect','ramadan.html'],['Aaniin Hub','aaniin.html'],['Our Impact','impact.html'],['Get Involved','get-involved.html'],['Contact','contact.html']];
+// Owner-reviewed content from MCC Marketing Studio (content/studio/*). Invalid content fails the build; nothing renders if the folder is absent.
+const studio=loadStudioContent({root:process.cwd()});
+if(studio.errors.length){console.error('Studio content errors:\n'+studio.errors.map(e=>' - '+e).join('\n'));process.exit(1)}
+for(const m of studio.skipped)console.warn('Studio content skipped: '+m);
+const studioCssFiles=new Set([...(studio.events.length?['events.html']:[]),...(studio.funders.some(f=>f.inForce)?['impact.html']:[])]);const seoApplied=new Set();const studioAppend={};
+studioAppend['events.html']=()=>eventsSection(studio,section);studioAppend['impact.html']=()=>fundersSection(studio,section);
+const nav=[['Home','index.html'],['About','about.html'],['Programs','programs.html'],['Events','events.html'],['Ramadan Connect','ramadan.html'],['Aaniin Hub','aaniin.html'],['Our Impact','impact.html'],...(studio.news.length?[['News','news.html']]:[]),['Get Involved','get-involved.html'],['Contact','contact.html']];
 const records=[];
 const photo=(label,id='')=>{
   const managedPhoto=label.startsWith('managed:')?managedById.get(label.slice(8))?.approvedPhotograph:null;
@@ -67,6 +74,7 @@ page('ramadan.html','Ramadan Connect','MCC’s annual Ramadan community celebrat
 for(const year of [2024,2025,2026])page(managedById.get(`ramadan-${year}`).detailPageUrl,escapeHtml(managedById.get(`ramadan-${year}`).name),`Ramadan Connect ${year}: ${year===2027?'upcoming information':'historical community celebration'}.`,intro('RAMADAN CONNECT',escapeHtml(managedById.get(`ramadan-${year}`).name),year===2027?'Information will be shared once confirmed.':'Historical event information.')+section(`P5.${year-2021}`,year===2026?'A Ramadan Challenge for Youth & Families':year===2027?'Looking ahead':'Community memories',year===2026?'<h3>Youth & Family Challenges</h3><ul><li>Qur’an Recitation Challenge</li><li>Adhan / Mu’azzin Challenge (Boys)</li><li>Nasheed Challenge (Girls)</li><li>Ramadan Home Decoration Challenge</li><li>Family Charity Challenge (supporting Muslim Welfare Canada)</li></ul><h3>Age Groups</h3><p>Ages 4–16</p><h3>Iftars & Eid Grand Finale</h3><p>Community iftars and an Eid Grand Finale recognizing youth and families.</p><p>This archived programme information describes the activities advertised for 2026; it is not a record of results or confirmation that every activity took place.</p>':year===2027?(managedById.get('ramadan-2027').status==='Coming Soon'&&!managedById.get('ramadan-2027').startDate&&!managedById.get('ramadan-2027').registrationUrl?'<p>The RC 2027 schedule, venues, competitions and registration details have not been provided. No dates or registration links are advertised.</p>':''):'<p>For information about this past Ramadan Connect event, contact MCC.</p>',{image:year===2027?'':`Approved RC ${year} photographs`,decision:'Verify historical details; do not invent schedules'})+`<div class="registration-detail">${sessionFacts(managedById.get(`ramadan-${year}`))}${registrationMarkup(managedById.get(`ramadan-${year}`))}</div>`+link('All Ramadan Connect years','ramadan.html'));
 page('aaniin.html','Aaniin Community Hub','Seniors activities and community connection at Aaniin Community Centre.',intro('AANIIN COMMUNITY HUB','A Place to Connect, Learn and Belong','Community connection through MCC’s partnership with the City of Markham.')+section('P6.1','Connection at Aaniin','<p>Through its partnership with the City of Markham at Aaniin Community Centre, MCC brings seniors together for social activities, wellness programs, learning opportunities and community workshops in a welcoming environment.</p>',{image:'Approved Aaniin group session around tables'})+section('P6.2','Activities & schedules','<p>Explore seniors activities, learning opportunities and workshops. Contact MCC for current session dates, times and participation arrangements.</p>'+sessionFacts(managedById.get('aaniin'))+registrationMarkup(managedById.get('aaniin'))+link('Ask about Aaniin Hub','contact.html')));
 page('impact.html','Our Community Impact',"Explore Markham Community Connect's journey since 2024, supporting children, youth, seniors and families through community programs, events and volunteering.",impactPage({intro,section,link}));
+for(const p of studioPages(studio,{intro,section})){studioCssFiles.add(p.file);page(p.file,escapeHtml(p.title),escapeHtml(p.description),p.body);}
 page('get-involved.html','Get Involved','Volunteer, partner and support community initiatives with MCC.',intro('GET INVOLVED','Be Part of Something Meaningful.',"MCC grows through people who give their time, share their skills and support community initiatives. There's a place for everyone to make a difference.")+section('P8.1','Volunteer','<p>Share your time and skills with community initiatives. Roles and availability will be confirmed by MCC.</p>'+link('Contact Us to Volunteer','contact.html')+link('Contact MCC','contact.html'),{links:'Volunteer Microsoft Forms URL'})+section('P8.2','Partner & Sponsor','<p>Connect with MCC about community collaboration or sponsorship opportunities.</p>'+link('Become a Partner','mailto:info@markhamcc.ca'))+section('P8.3','Support MCC','<p>Support community initiatives through donations and participation.</p>'+link('Donate Now','donate.html')));
 page('contact.html','Contact','Contact Markham Community Connect in Markham, Ontario, Canada.',intro('CONTACT','Contact Us','Have a question about our programs, registration, volunteering, sponsorships or community events? Send us a message and our team will be happy to help.')+section('P9.3','Send MCC a message',contactForm(managedRecords),{status:'Approved',decision:'Local form prepared; external email/Turnstile configuration and mailbox verification still required'})+section('P9.1','Contact MCC','<p><a href="mailto:info@markhamcc.ca">info@markhamcc.ca</a></p><p><a href="tel:+14379071700">437-907-1700</a></p><p>Markham, Ontario, Canada</p><p>Website domain: markhamcc.ca</p>',{decision:'Official email, telephone and location supplied; email and telephone links activated'})+section('P9.2','Follow MCC',socialLinks(),{links:'',decision:'Facebook, Instagram and official YouTube channel supplied and activated'}));
 page('donate.html','Donate','Support MCC community initiatives.',intro('SUPPORT MCC','Help Community Connections Grow.','Support programs and shared experiences in Markham.')+section('P10.1','Donate through Zeffy',donation('Donate through Zeffy')+`<p>Good to know: Zeffy may suggest an optional contribution to support its free platform. You can select 'Other' and enter $0 if you prefer. Your donation to MCC will not be reduced.</p>`+link('Contact MCC','mailto:info@markhamcc.ca'),{links:'',decision:'Official MCC general donation URL supplied and activated; registration and ticketing remain separate'}));
@@ -98,6 +106,8 @@ fs.copyFileSync('src/rc2027.css',path.join(out,'assets/rc2027.css'));
 fs.copyFileSync('src/rc2027.js',path.join(out,'assets/rc2027.js'));
 
 function writePage(file,html){
+ if(studioAppend[file]){const frag=studioAppend[file]();if(frag)html=html.includes('</div></main>')?html.replace('</div></main>',frag+'</div></main>'):html.replace('</main>',frag+'</main>');}
+ if(studioCssFiles.has(file))html=html.replace('</head>','<link rel="stylesheet" href="/assets/studio.css"></head>');
  if(['index.html','pet-plant.html'].includes(file))html=html.replace('</head>','<link rel="stylesheet" href="/assets/pet-plant-media.css"></head>');
  if(file==='pet-plant.html'){html=html.replaceAll('Pet Plant Program | Markham Community Connect','Pet Plant Program | Seniors Gardening &amp; Wellness in Markham');html=html.replace('</head>','<link rel="canonical" href="https://markhamcc.ca/pet-plant.html"><meta property="og:url" content="https://markhamcc.ca/pet-plant.html"><link rel="stylesheet" href="assets/pet-plant.css"></head>');}
  if(file==='programs.html')html=html.replace('</head>','<link rel="canonical" href="https://markhamcc.ca/programs.html"><meta property="og:url" content="https://markhamcc.ca/programs.html"><link rel="stylesheet" href="assets/programs.css"></head>');
@@ -115,6 +125,7 @@ function writePage(file,html){
   const canonical=isRC?'https://markhamcc.ca/ramadan-connect/2027/':publicPageUrl(file);
   html=html.replace(/(<link rel="canonical" href=")[^"]+("\s*\/?>)/g,'$1'+canonical+'$2').replace(/(<meta property="og:url" content=")[^"]+("\s*\/?>)/g,'$1'+canonical+'$2');
  }
+ for(const rec of studio.seo)if(fileForPath(rec.path,[file])===file){html=applySeo(html,rec);seoApplied.add(rec.slug);}
  html=html.replace('</head>','<link rel="stylesheet" href="/assets/prelaunch.css"></head>');
  fs.mkdirSync(path.dirname(path.join(out,file)),{recursive:true});fs.writeFileSync(path.join(out,file),html);
 }
@@ -122,6 +133,8 @@ function writePage(file,html){
 fs.writeFileSync('RC2027_REVIEW_CHECKLIST.md',rcChecklist(managedById.get('ramadan-2027')));
 fs.appendFileSync('WEBSITE_REVIEW_CHECKLIST.md','\n## RC 2027 permanent page\n\nSee RC2027_REVIEW_CHECKLIST.md for RC27.1–RC27.9. Permanent URL: /ramadan-connect/2027/. Configuration is in data/programs.json, not a separate registration system.\n');
 
+for(const rec of studio.seo)if(!seoApplied.has(rec.slug)){console.error(`Studio content error: ${rec.rel}: path ${rec.path} matches no page on the website`);process.exit(1)}
+fs.writeFileSync(path.join(out,'assets/studio.css'),STUDIO_CSS);copyMedia(studio,out);
 console.log('Built ' + fs.readdirSync(out,{recursive:true}).filter(f=>f.endsWith('.html')).length + ' HTML pages in dist/.');
 
 writeLaunchFiles(out);

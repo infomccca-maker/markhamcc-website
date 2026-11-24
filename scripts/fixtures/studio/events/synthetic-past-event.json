@@ -1,0 +1,12 @@
+{
+  "_source": "MCC Marketing Studio (owner-reviewed PR)",
+  "_kind": "event",
+  "title": "Synthetic past event",
+  "starts_at": "2026-01-10T15:00:00.000Z",
+  "ends_at": null,
+  "timezone": "America/Toronto",
+  "venue": "Synthetic Hall",
+  "program": null,
+  "summary": null,
+  "registration_url": "https://example.org/old"
+}

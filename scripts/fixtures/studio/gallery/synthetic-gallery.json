@@ -1,0 +1,15 @@
+{
+  "_source": "MCC Marketing Studio (owner-reviewed PR)",
+  "_kind": "gallery",
+  "title": "Synthetic gallery",
+  "program": null,
+  "items": [
+    {
+      "src": "media/synthetic-photo.png",
+      "width": 1,
+      "height": 1,
+      "caption": "Synthetic caption",
+      "alt": "A single synthetic test pixel"
+    }
+  ]
+}
