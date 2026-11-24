@@ -1,0 +1,13 @@
+{
+  "_source": "MCC Marketing Studio (owner-reviewed PR)",
+  "_kind": "news",
+  "title": "Synthetic garden update",
+  "date": "2026-11-01",
+  "summary": "A synthetic test announcement used only by automated tests.",
+  "body": [
+    "First synthetic paragraph with removed in real data.",
+    "Second paragraph & an ampersand."
+  ],
+  "program": "Seniors in Bloom",
+  "link": "https://example.org/more"
+}
