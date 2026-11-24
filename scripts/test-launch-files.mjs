@@ -16,4 +16,12 @@ for(const mode of ['preview','public']){
  assert.ok(!headers.includes('sandbox'));assert.ok(!headers.includes('navigate-to'));assert.ok(!headers.includes('unsafe-inline'));
 }
 assert.throws(()=>writeLaunchFiles(tmp,'invalid'));
+// Studio review branches: forced preview (even if SITE_MODE=public is inherited) and no contact Function route.
+writeLaunchFiles(tmp,'public',{CF_PAGES_BRANCH:'studio-content-renderer'});
+assert.ok(fs.readFileSync(tmp+'/robots.txt','utf8').includes('Disallow: /'));assert.ok(fs.readFileSync(tmp+'/_headers','utf8').includes('X-Robots-Tag: noindex'));
+assert.ok(!fs.readFileSync(tmp+'/_routes.json','utf8').includes('"/api/contact"'));
+writeLaunchFiles(tmp,'preview',{CF_PAGES_BRANCH:'mcc-website-v3'});
+assert.ok(fs.readFileSync(tmp+'/_routes.json','utf8').includes('"/api/contact"'),'other branches keep the contact route');
+writeLaunchFiles(tmp,'public',{CF_PAGES_BRANCH:'main'});
+assert.ok(fs.readFileSync(tmp+'/_routes.json','utf8').includes('"/api/contact"'));
 console.log('PASS: public/preview robots, sitemap, security headers and invalid-mode rejection.');
