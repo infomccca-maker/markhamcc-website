@@ -69,6 +69,12 @@ export function loadStudioContent({root = process.cwd(), now = new Date(), siteF
   return out;
 }
 
+/** Optional exact sponsor/grant acknowledgements carried by Studio content (verified by Studio recognition rules). */
+function checkAcks(i, err) {
+  if (i.acknowledgements == null) return;
+  if (!Array.isArray(i.acknowledgements) || i.acknowledgements.length > 10 || !i.acknowledgements.every((a) => a && isText(a.organisation, 200) && isText(a.wording, 800))) err('acknowledgements must be a list of {organisation, wording} plain-text entries (max 10)');
+}
+
 const validators = {
   news(i, {today, err}) {
     if (!isText(i.title, 160)) err('title required (plain text)');
@@ -78,6 +84,7 @@ const validators = {
     if (!Array.isArray(i.body) || !i.body.length || !i.body.every((p) => isText(p, 1500))) err('body must be a non-empty list of plain-text paragraphs');
     if (!optText(i.program, 60)) err('program must be plain text');
     if (i.link != null && !isHttps(i.link)) err('link must be https');
+    checkAcks(i, err);
   },
   event(i, {err}) {
     if (!isText(i.title, 160)) err('title required');
@@ -87,6 +94,7 @@ const validators = {
     if (i.status != null && i.status !== 'confirmed') err(`status must be "confirmed" (got "${i.status}"); unconfirmed events are never listed`);
     if (!optText(i.venue, 300) || !optText(i.summary, 600) || !optText(i.program, 60)) err('venue, summary and program must be plain text');
     if (i.registration_url != null && !isHttps(i.registration_url)) err('registration_url must be https');
+    checkAcks(i, err);
   },
   gallery(i, {err, root, out}) {
     if (!isText(i.title, 160)) err('title required');
@@ -125,6 +133,7 @@ const validators = {
     if (!isText(i.title, 160)) err('title required');
     if (!Array.isArray(i.sections) || !i.sections.length) return err('sections required');
     for (const s of i.sections) if (!isText(s?.heading, 160) || !Array.isArray(s.paragraphs) || !s.paragraphs.length || !s.paragraphs.every((p) => isText(p, 1500))) err('every section needs a plain-text heading and paragraphs');
+    checkAcks(i, err);
   },
 };
 
@@ -138,16 +147,17 @@ export function fileForPath(p, files) {
 // ------------------------------------------------------------------ rendering
 const para = (ps) => ps.map((p) => `<p>${esc(p)}</p>`).join('');
 const ldJson = (o) => `<script type="application/ld+json">${JSON.stringify(o).replace(/</g, '\\u003c')}</script>`;
+const acks = (list) => (list?.length ? `<div class="studio-acknowledgements">${list.map((a) => `<p class="studio-acknowledgement">${esc(a.wording)}</p>`).join('')}</div>` : '');
 const ext = (url, text) => `<a class="button" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(text)}<span aria-hidden="true"> ↗</span></a>`;
 
 export function newsArticle(n) {
-  return `<article class="studio-article"><p class="studio-meta"><time datetime="${n.date}">${fmtDate(`${n.date}T12:00:00Z`)}</time>${n.program ? ` · ${esc(n.program)}` : ''}</p>${para(n.body)}${n.link ? `<p>${ext(n.link, 'Read more')}</p>` : ''}</article>`;
+  return `<article class="studio-article"><p class="studio-meta"><time datetime="${n.date}">${fmtDate(`${n.date}T12:00:00Z`)}</time>${n.program ? ` · ${esc(n.program)}` : ''}</p>${para(n.body)}${n.link ? `<p>${ext(n.link, 'Read more')}</p>` : ''}${acks(n.acknowledgements)}</article>`;
 }
 const newsCard = (n) => `<article class="card studio-card"><p class="studio-meta"><time datetime="${n.date}">${fmtDate(`${n.date}T12:00:00Z`)}</time></p><h3><a href="news-${n.slug}.html">${esc(n.title)}</a></h3><p>${esc(n.summary)}</p></article>`;
 
 export function eventCard(e, past) {
   const when = `${fmtDate(e.starts_at)}, ${fmtTime(e.starts_at)}${e.ends_at ? `–${fmtTime(e.ends_at)}` : ''}`;
-  return `<article class="event-entry studio-event"><h3>${esc(e.title)}</h3>${past ? '<p class="studio-badge">Past event</p>' : ''}<dl class="session-facts"><div><dt>When</dt><dd><time datetime="${esc(e.starts_at)}">${esc(when)}</time> (Toronto time)</dd></div>${e.venue ? `<div><dt>Where</dt><dd>${esc(e.venue)}</dd></div>` : ''}${e.program ? `<div><dt>Program</dt><dd>${esc(e.program)}</dd></div>` : ''}</dl>${e.summary ? `<p>${esc(e.summary)}</p>` : ''}${!past && e.registration_url ? `<p>${ext(e.registration_url, 'Register')}</p>` : ''}</article>`;
+  return `<article class="event-entry studio-event"><h3>${esc(e.title)}</h3>${past ? '<p class="studio-badge">Past event</p>' : ''}<dl class="session-facts"><div><dt>When</dt><dd><time datetime="${esc(e.starts_at)}">${esc(when)}</time> (Toronto time)</dd></div>${e.venue ? `<div><dt>Where</dt><dd>${esc(e.venue)}</dd></div>` : ''}${e.program ? `<div><dt>Program</dt><dd>${esc(e.program)}</dd></div>` : ''}</dl>${e.summary ? `<p>${esc(e.summary)}</p>` : ''}${!past && e.registration_url ? `<p>${ext(e.registration_url, 'Register')}</p>` : ''}${acks(e.acknowledgements)}</article>`;
 }
 export const eventJsonLd = (e) => ldJson({'@context': 'https://schema.org', '@type': 'Event', name: e.title, startDate: e.starts_at, ...(e.ends_at ? {endDate: e.ends_at} : {}), eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode', ...(e.venue ? {location: {'@type': 'Place', name: e.venue}} : {}), organizer: {'@type': 'Organization', name: 'Markham Community Connect', url: SITE}});
 
@@ -181,7 +191,7 @@ export function studioPages(c, {intro, section, now = new Date()}) {
     for (const n of c.news) pages.push({file: `news-${n.slug}.html`, title: n.title, description: tr(n.summary, 160), body: intro('NEWS', esc(n.title), esc(n.summary)) + section('S3.2', 'Announcement', newsArticle(n) + '<p><a href="news.html">← All news</a></p>', {status: 'Studio content'})});
   }
   if (c.gallery.length) pages.push({file: 'gallery.html', title: 'Photo Gallery', description: 'Photographs from Markham Community Connect programs and events, shared with consent.', body: intro('GALLERY', 'Photo Gallery', 'Moments from MCC programs and events, shared with permission.') + c.gallery.map((g, n) => section(`S4.${n + 1}`, esc(g.title), galleryFigures(g), {status: 'Studio content'})).join('')});
-  for (const p of c.pages) pages.push({file: `info-${p.slug}.html`, title: p.title, description: tr(p.sections[0].paragraphs[0], 160), body: intro('MARKHAM COMMUNITY CONNECT', esc(p.title), '') + p.sections.map((s, n) => section(`S5.${n + 1}`, esc(s.heading), para(s.paragraphs), {status: 'Studio content'})).join('')});
+  for (const p of c.pages) pages.push({file: `info-${p.slug}.html`, title: p.title, description: tr(p.sections[0].paragraphs[0], 160), body: intro('MARKHAM COMMUNITY CONNECT', esc(p.title), '') + p.sections.map((s, n) => section(`S5.${n + 1}`, esc(s.heading), para(s.paragraphs) + (n === p.sections.length - 1 ? acks(p.acknowledgements) : ''), {status: 'Studio content'})).join('')});
   return pages;
 }
 

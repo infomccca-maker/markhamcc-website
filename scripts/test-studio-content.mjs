@@ -28,6 +28,8 @@ withRoot((root) => {
   // events: upcoming listed with registration; past event labelled and without a register button
   const ev = eventsSection(c, section, now);
   assert.match(ev, /Synthetic workshop/); assert.match(ev, /Past event/);
+  assert.ok(ev.includes('This synthetic event is supported by Synthetic Funder.'), 'event acknowledgement drawn verbatim');
+  assert.ok(all.includes('This synthetic event is supported by Synthetic Funder.'), 'news acknowledgement drawn verbatim');
   assert.ok(ev.includes('https://example.org/register')); assert.ok(!ev.includes('https://example.org/old'), 'no registration link on past events');
   assert.match(ev, /application\/ld\+json/);
   // funders: only in-force record, exact wording
@@ -53,6 +55,7 @@ const bad = [
   ['funders/x-status.json', {_kind: 'funder', organisation: 'F', wording: 'w', status: 'applied'}, /status/],
   ['funders/x-nowording.json', {_kind: 'funder', organisation: 'F', wording: ''}, /wording/],
   ['seo/x-canon.json', {_kind: 'seo', path: '/about', title: 'T', description: 'd'.repeat(60), canonical: 'https://evil.example/about'}, /canonical/],
+  ['news/x-ack.json', {_kind: 'news', title: 'T', date: '2026-11-01', summary: 's', body: ['p'], acknowledgements: [{organisation: 'F', wording: '<b>x</b>'}]}, /acknowledgements/],
   ['pages/about.json', {_kind: 'page', title: 'T', sections: [{heading: 'h', paragraphs: ['p']}]}, /collides/],
 ];
 for (const [rel, body, re] of bad) withRoot((root) => { mk(root, rel, {_source: 's', ...body}); assert.match(errorsFor(root), re, rel); });
@@ -84,4 +87,4 @@ assert.match(d('sitemap.xml'), /markhamcc\.ca\/news-synthetic-garden-update/);
 mk(tmp, 'news/zz-broken.json', {_kind: 'news', title: 'T', date: '2099-01-01', summary: 's', body: ['p']});
 assert.throws(() => run('scripts/build.mjs'), /Studio content errors/);
 fs.rmSync(tmp, {recursive: true, force: true});
-console.log('PASS: Studio content renderer (valid render, 12 rejection cases, drafts skipped, empty site unchanged, end-to-end build + site check).');
+console.log('PASS: Studio content renderer (valid render, 13 rejection cases, drafts skipped, empty site unchanged, end-to-end build + site check).');

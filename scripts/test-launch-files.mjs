@@ -20,6 +20,13 @@ assert.throws(()=>writeLaunchFiles(tmp,'invalid'));
 writeLaunchFiles(tmp,'public',{CF_PAGES_BRANCH:'studio-content-renderer'});
 assert.ok(fs.readFileSync(tmp+'/robots.txt','utf8').includes('Disallow: /'));assert.ok(fs.readFileSync(tmp+'/_headers','utf8').includes('X-Robots-Tag: noindex'));
 assert.ok(!fs.readFileSync(tmp+'/_routes.json','utf8').includes('"/api/contact"'));
+// The REAL branch names written by MCC Marketing Studio: studio/<kind>-<first 8 hex of the change id>.
+for(const kind of ['news','event','gallery','funder','seo','page','program'])for(const mode of ['public','preview']){
+ writeLaunchFiles(tmp,mode,{CF_PAGES_BRANCH:`studio/${kind}-0123abcd`,SITE_MODE:'public'});
+ assert.ok(fs.readFileSync(tmp+'/robots.txt','utf8').includes('Disallow: /'),`${kind}/${mode}: noindex robots`);
+ assert.ok(fs.readFileSync(tmp+'/_headers','utf8').includes('X-Robots-Tag: noindex'),`${kind}/${mode}: noindex header`);
+ assert.ok(!fs.readFileSync(tmp+'/_routes.json','utf8').includes('"/api/contact"'),`${kind}/${mode}: contact not routed`);
+}
 writeLaunchFiles(tmp,'preview',{CF_PAGES_BRANCH:'mcc-website-v3'});
 assert.ok(fs.readFileSync(tmp+'/_routes.json','utf8').includes('"/api/contact"'),'other branches keep the contact route');
 writeLaunchFiles(tmp,'public',{CF_PAGES_BRANCH:'main'});

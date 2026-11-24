@@ -1,9 +1,10 @@
 import fs from 'node:fs';
 // Match Cloudflare Pages' existing HTML-to-extensionless URL behavior.
 export const publicPageUrl = file => 'https://markhamcc.ca/' + file.replaceAll('\\','/').replace(/index\.html$/,'').replace(/\.html$/,'');
-// Studio review branches (studio-*) are locked down regardless of Cloudflare environment values: always preview mode
+// Studio review branches (studio-* and studio/*) are locked down regardless of Cloudflare environment values: always preview mode
 // (no indexing) and the contact Function is not routed, so a review preview can never send email. Other branches unchanged.
-export const studioReviewBranch=(env=process.env)=>/^studio-/.test(env.CF_PAGES_BRANCH||'');
+// Both Studio branch families: studio-* (reviewed manually) and studio/<kind>-<id> (written by MCC Marketing Studio).
+export const studioReviewBranch=(env=process.env)=>/^studio[-/]/.test(env.CF_PAGES_BRANCH||'');
 export function writeLaunchFiles(out,mode=process.env.SITE_MODE||'preview',env=process.env){
  if(!['preview','public'].includes(mode))throw Error('SITE_MODE must be preview or public');
  const locked=studioReviewBranch(env);if(locked)mode='preview';

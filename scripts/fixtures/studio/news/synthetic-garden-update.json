@@ -9,5 +9,11 @@
     "Second paragraph & an ampersand."
   ],
   "program": "Seniors in Bloom",
-  "link": "https://example.org/more"
+  "link": "https://example.org/more",
+  "acknowledgements": [
+    {
+      "organisation": "Synthetic Funder",
+      "wording": "This synthetic event is supported by Synthetic Funder."
+    }
+  ]
 }

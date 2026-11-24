@@ -8,5 +8,11 @@
   "venue": "Synthetic Hall",
   "program": "Seniors in Bloom",
   "summary": "Synthetic confirmed event.",
-  "registration_url": "https://example.org/register"
+  "registration_url": "https://example.org/register",
+  "acknowledgements": [
+    {
+      "organisation": "Synthetic Funder",
+      "wording": "This synthetic event is supported by Synthetic Funder."
+    }
+  ]
 }
